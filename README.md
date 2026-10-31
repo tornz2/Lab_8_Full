@@ -9,7 +9,7 @@
 
 ## 2. Условие задачи
 
-![Условие задачи](sourse/lab8_.png)
+![Условие задачи](sourse/lab_8_.png)
 
 ---
 
@@ -25,105 +25,26 @@
 ## 4. Реализация программы
 
 ```c
-#include <locale.h>
 #include <stdio.h>
-
-
-int def_1(int size, char part);
-int def_2(int size, char part);
-int def_3(int size, char part);
-int def_4(int size, char part);
-
+#include <locale.h>
 
 int main() {
     setlocale(LC_ALL, ".UTF8");
 
 
-    int size;
-    char part;
+    int N;
 
-    printf("Символ:\n");
-    scanf("%c", &part);
+    printf("N:\n");
+    scanf("%d", &N);
 
-    printf("Размер треугольника\n");
-    scanf(" %d", &size);
-    puts("\n");
+    double sum = 0.0;
+    int plus_or_minus = 1;
 
-    def_1(size, part);
-    def_2(size, part);
-    def_3(size, part);
-    def_4(size, part);
-
-
-    return 0;
-}
-
-
-int def_1(int size, char part) {
-    //Скат вправо
-    for (int i = 1; i <= size; i++) {
-        for (int j = 1; j <= i; j++) {
-            printf("%c ", part);
-        }
-        printf("\n");
+    for (int i = 1; i <= N; i++) {
+        sum += plus_or_minus * (1.0 + i / 10.0);
+        plus_or_minus *= -1; 
     }
-    printf("\n\n");
-
-
-    return 0;
-}
-
-
-int def_2(int size, char part) {
-    //Скат влево
-    for (int i = 0; i <= size; i++) {
-        for (int j = size; j > i; j--){
-            printf("  ");
-        }
-        for (int g = 0; g < i; g++) {
-                printf("%c ", part);
-        }
-        printf("\n");
-    }
-    printf("\n\n");
-    
-
-    return 0;
-}
-
-
-int def_3(int size, char part) {
-    //Скат вправо (Only контур)
-    for (int i = 1; i <= size; i++) {
-        for (int j = 1; j <= i; j++) {
-            if (j == 1 || j == i || i == size){
-                printf("%c ", part);
-            } else printf("  ");
-        }
-        printf("\n");
-    }
-    printf("\n\n");
-
-
-    return 0;
-}
-
-
-int def_4(int size, char part) {
-    //Скат влево (Only контур)
-    for (int i = 0; i <= size; i++) {
-        for (int j = size; j > i; j--){
-            printf("  ");
-        }
-        for (int g = 1; g <= i; g++) {
-            if (g == 1 || g == i || i == size){
-                printf("%c ", part);
-            } else printf("  ");
-        }
-        printf("\n");
-    }   
-    printf("\n\n");
-
+    printf("Сумма: %lf\n", sum);
 
     return 0;
 }
